@@ -19,21 +19,21 @@ product = list(product(list1, list2))   # Combines each element of the arrays, o
 # permutations
 list3 = [1, 2, 3]
 perm = list(permutations(list3))    # Gives a list of all possible orderings
-#print(perm)                         # Outputs [(1, 2, 3), (1, 3, 2), (2, 1, 3), (2, 3, 1), (3, 1, 2), (3, 2, 1)]
+# print(perm)                         # Outputs [(1, 2, 3), (1, 3, 2), (2, 1, 3), (2, 3, 1), (3, 1, 2), (3, 2, 1)]
 perm2 = list(permutations(list3, 2))    # Gives a list of all possible outcomes with 2 elements per outcome
-#print(perm2)                        # Outputs [(1, 2), (1, 3), (2, 1), (2, 3), (3, 1), (3, 2)]
+# print(perm2)                        # Outputs [(1, 2), (1, 3), (2, 1), (2, 3), (3, 1), (3, 2)]
 
 # combinations
 list4 = [1, 2, 3, 4]
 comb = list(combinations(list4, 2))  # Similar to permutations but no duplicates and only one combination of each set
-#print(comb)             # e.g if does (1,2) won't do (2,1) Outputs [(1, 2), (1, 3), (1, 4), (2, 3), (2, 4), (3, 4)]
+# print(comb)             # e.g if does (1,2) won't do (2,1) Outputs [(1, 2), (1, 3), (1, 4), (2, 3), (2, 4), (3, 4)]
 
 # accumulate
 list5 = [1, 2, 3, 4]
 acc = list(accumulate(list5))   # Adds elements to each other as it goes, cumulative frequency
-#print(acc)                      # Outputs [1, 3, 6, 10]
+# print(acc)                      # Outputs [1, 3, 6, 10]
 acc2 = list(accumulate(list5, func=operator.mul))   # If import operator you can change what it does as it goes
-#print(acc2)         # This multiplies as it goes, outputs [1, 2, 6, 24]
+# print(acc2)         # This multiplies as it goes, outputs [1, 2, 6, 24]
 list6 = [1, 2, 5, 3, 4]
 acc3 = list(accumulate(list6, func=max))   # Records the max as it goes along, outputs [1, 2, 5, 5, 5]
 
