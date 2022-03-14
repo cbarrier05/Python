@@ -5,7 +5,7 @@
 
 # How to write to file
 #employee_file = open("ReadFilesExample.txt", "w")
-#employee_file.write("Toby")  # Overwites entire file, only has Toby in it
+#employee_file.write("Toby")  # Overwrites entire file, only has Toby in it
 
 # How to make new file
 #employee_file = open("WriteFilesExample.txt", "w")
