@@ -34,4 +34,5 @@ myList14 = list(myList1)                    # Copies myList1,now when one is cha
 myList15 = myList1[:]                       # Copies myList1,now when one is changed, the other won't change
 myList16 = [1, 2, 3, 4, 5]                  # Creates a new list where each element has been squared in new list
 myList17 = [x*x for x in myList16]
+myList1.index("banana")                     # Finds index of element
 myList1.clear()                             # Empty the list
