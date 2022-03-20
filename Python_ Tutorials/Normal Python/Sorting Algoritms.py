@@ -22,7 +22,7 @@ def bubble(list1):
         n -= 1
     end = time.time()
     print("This is the sorted list: ",list1)
-    print("It took ", end - start)
+    print("Bubble took ", end - start)
 
 
 def insertion(list2):
@@ -36,13 +36,12 @@ def insertion(list2):
         list2[previous + 1] = item                       # Once reaches end or finds position it inserts it
     end = time.time()
     print("This is the sorted list: ", list2)
-    print("It took: ", end - start)
+    print("Insertion took: ", end - start)
 
 
 def mergeSort(list3):
     if len(list3) > 1:
-        # Finding the mid of the array
-        mid = len(list3) // 2
+        mid = len(list3) // 2    # Find the middle element of the array
         # Dividing the array elements
         left = list3[:mid]
         # into 2 halves
@@ -50,26 +49,29 @@ def mergeSort(list3):
         # Sorting the first half
         mergeSort(left)
         # Sorting the second half
-        mergeSort(left)
-        a, b, c = 0, 0, 0
-        # Copy data to temp arrays left and right
-        while a < len(left) and b < len(right):
-            if left[a] < right[b]:
-                list3[c] = left[a]
-                a += 1
+        mergeSort(right)
+        # This is repeated until the list is split into individual elements
+        # Then it enters the next code to recombine it
+
+        index1, index2, index3 = 0, 0, 0
+        # Combine each list into 1 array
+        while index1 < len(left) and index2 < len(right):
+            if left[index1] < right[index2]:
+                list3[index3] = left[index1]
+                index1 += 1
             else:
-                list3[c] = right[b]
-                b += 1
-            c += 1
-        # Checking if any element is left over
-        while a < len(left):
-            list3[c] = left[a]
-            a += 1
-            c += 1
-        while b < len(right):
-            list3[c] = right[b]
-            b += 1
-            c += 1
+                list3[index3] = right[index2]
+                index2 += 1
+            index3 += 1
+        # Checking if any element is left over from the combination
+        while index1 < len(left):
+            list3[index3] = left[index1]
+            index1 += 1
+            index3 += 1
+        while index2 < len(right):
+            list3[index3] = right[index2]
+            index2 += 1
+            index3 += 1
 
 
 def merge(list3):
@@ -77,7 +79,7 @@ def merge(list3):
     mergeSort(list3)
     end = time.time()
     print("This is the sorted list: ", list2)
-    print("It took: ", end - start)
+    print("Merge took: ", end - start)
 
 
 list1, list2, list3, rand = listCreation()
