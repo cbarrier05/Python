@@ -8,8 +8,9 @@ def listCreation():
     list1 = random.sample(range(0, randrange), rand)
     list2 = list(list1)
     list3 = list(list1)
+    list4 = list(list1)
     print("This is the starting list: ", list1)
-    return list1, list2, list3, rand
+    return list1, list2, list3, list4, rand
 
 
 def bubble(list1):
@@ -78,11 +79,16 @@ def merge(list3):
     start = time.time()
     mergeSort(list3)
     end = time.time()
-    print("This is the sorted list: ", list2)
+    print("This is the sorted list: ", list3)
     print("Merge took: ", end - start)
 
 
-list1, list2, list3, rand = listCreation()
+list1, list2, list3, list4,  rand = listCreation()
 bubble(list1)
 insertion(list2)
 merge(list3)
+start = time.time()
+list4.sort()
+end = time.time()
+print("This is the sorted list: ", list4)
+print("Built in took: ", end - start)
