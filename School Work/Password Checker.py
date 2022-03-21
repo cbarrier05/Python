@@ -19,11 +19,31 @@ def allowed():
     symbol.append(chr(45))
     symbol.append(chr(61))
     symbol.append(chr(33))
-    return tuple(lower), tuple(upper), tuple(number), tuple(symbol)
+    qwerty = [["Q", "q"], ["W", "w"], ["E", "e"], ["R", "r"], ["T", "t"], ["Y", "y"], ["U", "u"],
+              ["I", "i"], ["O", "o"], ["P", "p"], ["A", "a"], ["S", "s"], ["D", "d"], ["F", "f"],
+              ["G", "g"], ["H", "h"], ["J", "j"], ["K", "k"], ["L", "l"], ["Z", "z"], ["X", "x"],
+              ["C", "c"], ["V", "v"], ["B", "b"], ["N", "n"], ["M", "m"]]
+    return tuple(lower), tuple(upper), tuple(number), tuple(symbol), tuple(qwerty)
+
+
+def Consecutive(password, qwerty, points):
+    try:
+        for char in range(0,len(password)):
+            for index1 in range(0,len(qwerty)):
+                for index2 in range(0,2):
+                    if password[char] == qwerty[index1][index2]:
+                        if password[char-1] == qwerty[index1-1][0] or password[char-1] == qwerty[index1-1][1]:
+                            if password[char+1] == qwerty[index1+1][0] or password[char+1] == qwerty[index1+1][1]:
+                                points -= 5
+    except:
+        pass
+    return points
+
+
 def checkPassword():
     points = 0
-    first_lower, first_upper, first_number, first_symbol = True, True, True, True
-    lower, upper, number, symbol = allowed()
+    count_lower, count_upper, count_number, count_symbol = False, False, False, False
+    lower, upper, number, symbol, qwerty = allowed()
     password = input("Enter a password:  ")
     if len(password) < 8 or len(password) > 24:
         print("Password is the wrong length")
@@ -31,30 +51,43 @@ def checkPassword():
     # Task 3
     for character in password:
         if character in lower:
-              if first_lower == True:
-                  points += 5
-                  first_lower = False
+            if not count_lower:
+                points += 5
+                count_lower = True
         elif character in upper:
-              if first_upper == True:
-                  points += 5
-                  first_upper = False
+            if not count_upper:
+                points += 5
+                count_upper = True
         elif character in number:
-              if first_number == True:
-                  points += 5
-                  first_number = False
+            if not count_number:
+                points += 5
+                count_number = True
         elif character in symbol:
-              if first_symbol == True:
-                  points += 5
-                  first_symbol = False
+            if not count_symbol:
+                points += 5
+                count_symbol = True
         else:
             print("Invalid character in password")
             menu()
-    if first_lower == False and first_upper == False and first_number == False and first_symbol == False:
+    points += len(password)
+    if count_lower and count_upper and count_number and count_symbol:
         points += 10
-    elif first_lower == False and first_upper == False and first_number == True and first_symbol == True:
+    elif count_lower and count_upper and not count_number and not count_symbol:
         points -= 5
-    
-    print("Your password is acceptable")
+    elif not count_lower and not count_upper and count_number and not count_symbol:
+        points -= 5
+    elif not count_lower and not count_upper and not count_number and count_symbol:
+        points -= 5
+    points = Consecutive(password, qwerty, points)
+
+    if points > 20:
+        print("Your password is strong")
+    elif points > 0:
+        print("Your password is medium")
+    else:
+        print("Your password is weak")
+    print("It scores", points, "points")
+    menu()
     
 # Task 1
 def menu():
