@@ -8,9 +8,8 @@ def listCreation():
     list1 = random.sample(range(0, randrange), rand)
     list2 = list(list1)
     list3 = list(list1)
-    list4 = list(list1)
     print("This is the starting list: ", list1)
-    return list1, list2, list3, list4, rand
+    return list1, list2, list3
 
 
 def bubble(list1):
@@ -24,7 +23,7 @@ def bubble(list1):
     end = time.time()
     print("This is the sorted list: ",list1)
     print("Bubble took ", end - start)
-
+    return list1
 
 def insertion(list2):
     start = time.time()
@@ -83,12 +82,32 @@ def merge(list3):
     print("Merge took: ", end - start)
 
 
-list1, list2, list3, list4,  rand = listCreation()
-bubble(list1)
+def print_value(value, index):
+    print(value, "in position", index)
+
+
+def binarySearch(list1, value, temp):
+    if value in temp:
+        mid = round(len(list1)/2)
+        if list1[mid] == value:
+            print_value(value, temp.index(value))
+        elif list1[mid] > value:
+            list1 = list1[:mid]
+            return binarySearch(list1, value, temp)
+        else:
+            list1 = list1[(mid -1):]
+            return binarySearch(list1, value, temp)
+    else:
+        print(value,"not in list")
+
+
+list1, list2, list3 = listCreation()
+sortedList = bubble(list1)
 insertion(list2)
 merge(list3)
-start = time.time()
-list4.sort()
-end = time.time()
-print("This is the sorted list: ", list4)
-print("Built in took: ", end - start)
+search = input("Do you want to search for a number: (y/n)  ")
+if search == "y":
+    value = float(input("Enter the value you want to search for:  "))
+    binarySearch(sortedList, value, sortedList)
+else:
+    print("Thank you for using this software")
