@@ -4,6 +4,9 @@ from tkinter import *
 # root widget creates the screen, needs to go first
 root = Tk()
 
+# To change the title
+root.title("Title Example")
+
 # To create a widget you need to define it then pace it
 
 # Creates a label, hasn't been placed yet
